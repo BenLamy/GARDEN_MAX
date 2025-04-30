@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'plantations/new'
+  get 'plantations/create'
+  get 'plantations/destroy'
   get 'gardens/new'
   devise_for :users
   # root to: "pages#home"
@@ -15,5 +18,5 @@ Rails.application.routes.draw do
   resources :gardens do
     resources :plantations, only: [:new, :create, :show, :destroy]
   end
-
+  resources :plants
 end

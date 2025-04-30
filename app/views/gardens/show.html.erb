@@ -1,7 +1,44 @@
+<!-- app/views/gardens/show.html.erb -->
 <h1><%= @garden.name %></h1>
 
+<p>
+  <strong>Owner:</strong>
+  <%= @garden.user.email %>
+</p>
 
+<h2>Plants in this garden</h2>
 
-<%= link_to 'Edit Garden', edit_garden_path(@garden), class: 'btn btn-primary' %>
-<%= link_to 'Back to Gardens', gardens_path, class: 'btn btn-secondary' %>
-<%= button_to 'Delete Garden', garden_path(@garden), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn btn-danger' %>
+<% if @garden.plantations.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Plant</th>
+        <th>Planted on</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @garden.plantations.includes(:plant).each do |plantation| %>
+        <tr>
+          <td><%= plantation.plant.name %></td>
+          <td><%= plantation.date %></td>
+          <td><%= plantation.plant.description %></td>
+          <td>
+             <%= button_to 'Remove',
+                garden_plantation_path(@garden, plantation),
+                method: :delete,
+                form: { data: { turbo_confirm: 'Are you sure?' } },
+                class: 'btn-link' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No plants in this garden yet.</p>
+<% end %>
+
+<%= link_to 'Add Plant', new_garden_plantation_path(@garden), class: 'button' %>
+<%= link_to 'Edit Garden', edit_garden_path(@garden) %>
+<%= link_to 'Back', gardens_path %>

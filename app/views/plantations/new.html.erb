@@ -1,0 +1,31 @@
+<!-- app/views/plantations/new.html.erb -->
+<h1>Add Plant to <%= @garden.name %></h1>
+
+<%= form_with(model: [@garden, @plantation], local: true) do |form| %>
+  <% if @plantation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@plantation.errors.count, "error") %> prevented this plant from being added:</h2>
+      <ul>
+        <% @plantation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :plant_id %>
+    <%= form.collection_select :plant_id, @plants, :id, :name, prompt: "Select a plant" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_field :date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Add to Garden" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', garden_path(@garden) %>
