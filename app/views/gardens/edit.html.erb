@@ -1,0 +1,14 @@
+<h1>Edit Garden</h1>
+
+<%= form_with(model: @garden, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :name, "Garden Name" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Update Garden" %>
+  </div>
+<% end %>
+
+<p><%= link_to 'Back to Gardens', gardens_path %></p>
