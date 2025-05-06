@@ -17,9 +17,10 @@
 <h2>Plants in this garden</h2>
 
 <% if @garden.plantations.any? %>
-  <table>
+  <table class="plants-table">
     <thead>
       <tr>
+        <th>Image</th>
         <th>Plant</th>
         <th>Planted on</th>
         <th>Description</th>
@@ -29,6 +30,13 @@
     <tbody>
       <% @garden.plantations.includes(:plant).each do |plantation| %>
         <tr>
+          <td class="plant-thumbnail">
+            <% if plantation.plant.photo.attached? %>
+              <%= image_tag plantation.plant.photo, height: 60, width: 60, style: "object-fit: cover;", alt: plantation.plant.name %>
+            <% else %>
+              <%= image_tag "logo_garden_max.png", height: 60, width: 60, style: "object-fit: contain;", alt: "Plant image placeholder" %>
+            <% end %>
+          </td>
           <td><%= plantation.plant.name %></td>
           <td><%= plantation.date %></td>
           <td><%= plantation.plant.description %></td>
