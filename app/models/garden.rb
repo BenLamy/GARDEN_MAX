@@ -1,6 +1,6 @@
 class Garden < ApplicationRecord
   belongs_to :user
-
+  has_one_attached :photo
   has_many :plantations, dependent: :destroy
   has_many :plants, through: :plantations
   validates :name, presence: true, uniqueness: { scope: :user_id }

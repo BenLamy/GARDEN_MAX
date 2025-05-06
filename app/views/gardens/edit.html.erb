@@ -1,14 +1,20 @@
 <h1>Edit Garden</h1>
 
-<%= form_with(model: @garden, local: true) do |form| %>
-  <div class="field">
-    <%= form.label :name, "Garden Name" %>
-    <%= form.text_field :name %>
+<%= simple_form_for @garden do |f| %>
+  <%= f.input :name, label: "Garden Name", required: true %>
+
+  <div class="current-photo">
+    <% if @garden.photo.attached? %>
+      <p>Current photo:</p>
+      <%= image_tag @garden.photo, height: 150, width: 150, style: "object-fit: cover;" %>
+    <% else %>
+      <p>No current photo</p>
+    <% end %>
   </div>
 
-  <div class="actions">
-    <%= form.submit "Update Garden" %>
-  </div>
+  <%= f.input :photo, as: :file, label: "Garden Photo", hint: "Upload a new image to replace the current one (optional)" %>
+
+  <%= f.button :submit, "Update Garden", class: "btn-primary" %>
 <% end %>
 
 <p><%= link_to 'Back to Gardens', gardens_path %></p>

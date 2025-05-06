@@ -1,18 +1,42 @@
 <h1>Your Gardens</h1>
 
 <% if @gardens.any? %>
-  <ul>
+  <div class="gardens-list">
     <% @gardens.each do |garden| %>
-      <li>
-        <h2><%= link_to garden.name, garden_path(garden) %></h2>
-      </li>
+      <div class="garden-card">
+        <div class="garden-thumbnail">
+          <% if garden.photo.attached? %>
+            <%= image_tag garden.photo, height: 100, width: 100, style: "object-fit: cover;", alt: garden.name %>
+          <% else %>
+            <%= image_tag "logo_garden_max.png", height: 100, width: 100, style: "object-fit: contain;", alt: "Garden Manager logo" %>
+          <% end %>
+        </div>
+        <div class="garden-info">
+          <h2><%= link_to garden.name, garden_path(garden) %></h2>
+          <p><%= pluralize(garden.plants.count, 'plant') %> in this garden</p>
+          <div class="garden-actions">
+            <%= link_to 'View details', garden_path(garden), class: 'btn btn-sm btn-primary' %>
+            <%= link_to 'Edit', edit_garden_path(garden), class: 'btn btn-sm btn-secondary' %>
+            <%= button_to 'Delete', garden_path(garden), method: :delete,
+                          form: { data: { turbo_confirm: 'Are you sure you want to delete this garden?' } },
+                          class: 'btn btn-sm btn-danger' %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
 <% else %>
-  <p>You don't have any gardens yet. <%= link_to 'Create one now!', new_garden_path %></p>
-  <p>All my gardens are listed here.</p>
-  <p>Click on a garden name to view its details.</p>
-  <p>Click on the "Create a New Garden" button to add a new garden.</p>
+  <div class="empty-state">
+    <p>You don't have any gardens yet.</p>
+    <p><%= link_to 'Create your first garden!', new_garden_path, class: 'btn btn-lg btn-success' %></p>
+    <div class="empty-state-info">
+      <p>All your gardens will be listed here.</p>
+      <p>Click on a garden name to view its details.</p>
+      <p>Click on the "Create New Garden" button to add a new garden.</p>
+    </div>
+  </div>
 <% end %>
 
-<%= link_to 'Create New Garden', new_garden_path, class: 'btn btn-success' %>
+<div class="action-buttons">
+  <%= link_to 'Create New Garden', new_garden_path, class: 'btn btn-success' %>
+</div>
