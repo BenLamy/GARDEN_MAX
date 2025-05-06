@@ -1,14 +1,24 @@
-  <h1>Create a New Garden</h1>
+<!--  <h1>Create a New Garden</h1>
 
-  <%= form_with model: @garden, local: true do |form| %>
+  <%#= form_with model: @garden, local: true do |form| %>-->
+<!--    <div>-->
+      <%#= form.label :name, "Garden Name" %>
+      <%#= form.text_field :name, required: true %>
+<!--    </div>
+
     <div>
-      <%= form.label :name, "Garden Name" %>
-      <%= form.text_field :name, required: true %>
-    </div>
+      <%#= form.submit "Create Garden" %>-->
+<!--    </div>-->
+  <%# end %>
+<!--
+  <p><%#= link_to 'Back to Gardens', gardens_path %></p>
+-->
+<h1>Create a New Garden</h1>
 
-    <div>
-      <%= form.submit "Create Garden" %>
-    </div>
-  <% end %>
+<%= simple_form_for @garden do |f| %>
+  <%= f.input :name, label: "Garden Name", required: true %>
+  <%= f.input :photo, as: :file, label: "Garden Photo", hint: "Upload an image of your garden (optional)" %>
+  <%= f.button :submit, "Create Garden", class: "btn-primary" %>
+<% end %>
 
-  <p><%= link_to 'Back to Gardens', gardens_path %></p>
+<p><%= link_to 'Back to Gardens', gardens_path %></p>
