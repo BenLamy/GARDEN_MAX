@@ -1,240 +1,259 @@
-// .plants-table {
-//   width: 100%;
-//   border-collapse: collapse;
-//   margin: 20px 0;
-// }
-
-// .plants-table th, .plants-table td {
-//   padding: 10px;
-//   border: 1px solid #ddd;
-//   text-align: left;
-// }
-
-// .plants-table th {
-//   background-color: #f5f5f5;
-// }
-
-// .plant-thumbnail {
-//   width: 60px;
-//   text-align: center;
-// }
-
-// .plant-thumbnail img {
-//   border-radius: 5px;
-//   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-// }
-
-// .garden-actions {
-//   margin-top: 20px;
-//   display: flex;
-//   gap: 10px;
-// }
-
-// .button {
-//   padding: 8px 16px;
-//   border-radius: 4px;
-//   text-decoration: none;
-//   display: inline-block;
-//   border: none;
-//   cursor: pointer;
-//   font-size: 14px;
-// }
-
-// .btn-primary {
-//   background-color: #4CAF50;
-//   color: white;
-// }
-
-// .btn-secondary {
-//   background-color: #2196F3;
-//   color: white;
-// }
-
-// .btn-danger {
-//   background-color: #f44336;
-//   color: white;
-// }
-
-// .btn-light {
-//   background-color: #f0f0f0;
-//   color: #333;
-// }
-
-// .btn-link {
-//   background: none;
-//   border: none;
-//   color: #2196F3;
-//   text-decoration: underline;
-//   cursor: pointer;
-//   padding: 0;
-// }
-body {
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  background: #f7faf8;
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  color: #16954e; /* Vert principal tiré du logo/présent dans ta page */
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  letter-spacing: -1px;
-}
-
-.gardens-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  margin: 2rem auto;
-  max-width: 1200px;
-  padding: 0 1rem;
-}
-
-.garden-card {
+#garden-show {
   background: #fff;
-  border-radius: 1.25rem;
-  box-shadow: 0 2px 16px 0 #0e4a241a;
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  padding: 1.5rem;
-  transition: box-shadow .18s;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 28px #0e4a241a;
+  padding: 2.5rem 2vw 2rem 2vw;
+  max-width: 970px;
+  margin: 2.5rem auto 1.8rem auto;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
-.garden-card:hover {
-  box-shadow: 0 4px 24px 0 #1fa76622;
+.garden-show-header {
+  text-align: center;
+  margin-bottom: 1.3rem;
 }
 
-.garden-thumbnail img {
-  border-radius: 1rem;
-  border: 2px solid #baf3cd;
-  background: #f6fff9;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  box-shadow: 0 1px 6px #c4e5d2;
-}
-
-.garden-info {
-  flex: 1;
-}
-
-.garden-info h2 {
-  margin: 0 0 .3rem;
-  font-size: 1.3rem;
+.garden-show-title {
   color: #16954e;
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 0.3rem;
+}
+
+.garden-show-owner {
+  font-size: 1.09rem;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .6rem;
+}
+
+.owner-label {
   font-weight: 600;
+  color: #1fa766;
+}
+
+.owner-email {
+  color: #0e4a24;
+  background: #e5f7ee;
+  border-radius: .7rem;
+  padding: .18rem .8rem;
+  font-size: 1.07rem;
+  margin-left: .2rem;
+}
+
+.garden-show-image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.1rem;
+}
+
+.garden-show-image {
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 18px #c4e5d2cc;
+  background: #f6fff9;
+  object-fit: cover;
+  width: 400px;
+  height: 300px;
+  max-width: 90vw;
+}
+
+.garden-show-plants-section {
+  margin-top: 2rem;
+}
+
+.garden-show-subtitle {
+  color: #1fa766;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
   letter-spacing: -0.5px;
 }
 
-.garden-info h2 a {
-  text-decoration: none;
-  color: inherit;
-  transition: color .16s;
+.garden-show-plants-table {
+  width: 100%;
+  margin: 0 auto 2.5rem auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 16px #0e4a241a;
+  overflow: hidden;
+  font-size: 1.03rem;
 }
 
-.garden-info h2 a:hover {
-  color: #0e4a24;
+.garden-show-plants-table thead tr {
+  background: linear-gradient(90deg, #1fa766 40%, #16954e 100%);
 }
 
-.garden-info p {
-  color: #555;
-  margin: 0 0 .6rem;
+.garden-show-plants-table th {
+  color: #fff;
+  font-weight: 600;
+  padding: 1.1rem 0.7rem;
+  text-align: left;
+  font-size: 1.06rem;
 }
 
-.garden-actions {
+.garden-show-plants-table td {
+  padding: 1rem 0.7rem;
+  color: #353535;
+  border-bottom: 1px solid #eaf3ec;
+  vertical-align: middle;
+  background: #fff;
+}
+
+.garden-show-plants-table tr:last-child td {
+  border-bottom: none;
+}
+
+.garden-show-plant-thumbnail {
+  border-radius: 0.9rem;
+  box-shadow: 0 1px 6px #baf3cd;
+  background: #f6fff9;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+
+.garden-show-actions {
+  margin: 2.3rem auto 1.7rem auto;
   display: flex;
-  gap: .7rem;
   flex-wrap: wrap;
+  gap: .8rem;
+  justify-content: center;
 }
 
-.btn {
+.garden-show-btn {
+  display: inline-block;
   padding: 0.5rem 1.1rem;
   font-size: 1rem;
-  font-weight: 500;
   border-radius: 1.7rem;
   border: none;
-  transition: background .15s, color .15s, box-shadow .18s;
+  font-weight: 500;
   text-decoration: none;
+  transition: background .15s, color .15s, box-shadow .16s;
   cursor: pointer;
-  box-shadow: 0 1px 4px #0001;
+  margin-right: 0.4rem;
+  margin-bottom: 0.35rem;
 }
 
-.btn-primary, .btn-success {
+.garden-show-btn-primary {
   background: linear-gradient(90deg, #1fa766 50%, #16954e 100%);
-  color: #fff;
-  border: none;
+  color: #fff !important;
 }
 
-.btn-secondary {
-  background: #e5f7ee;
-  color: #16954e;
-}
-
-.btn-danger {
-  background: #ffd1d1;
-  color: #d0202b;
-}
-
-.btn-primary:hover, .btn-success:hover {
+.garden-show-btn-primary:hover {
   background: linear-gradient(90deg, #16954e 70%, #1fa766 100%);
   color: #fff;
 }
 
-.btn-secondary:hover {
-  background: #baf3cd;
+.garden-show-btn-secondary {
+  background: #e5f7ee;
+  color: #16954e;
 }
 
-.btn-danger:hover {
+.garden-show-btn-secondary:hover {
+  background: #baf3cd;
+  color: #0e4a24;
+}
+
+.garden-show-btn-danger {
+  background: #ffd1d1;
+  color: #d0202b;
+}
+
+.garden-show-btn-danger:hover {
   background: #ffadad;
   color: #fff;
 }
 
-.btn-lg {
-  padding: 0.9rem 2rem;
-  font-size: 1.2rem;
-}
-
-.action-buttons {
-  display: flex;
-  justify-content: center;
-  margin: 2.5rem 0 1.5rem;
-}
-
-.empty-state {
-  text-align: center;
-  margin-top: 3rem;
-  color: #555;
-}
-
-.empty-state p {
-  font-size: 1.2rem;
-}
-
-.empty-state-info {
-  margin-top: 1.5rem;
+.garden-show-btn-light {
   background: #f6fff9;
-  border: 1.5px dashed #16954e;
-  padding: 1.1rem 2rem;
-  border-radius: 1.2rem;
   color: #16954e;
-  max-width: 440px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.08rem;
+  border: 1.5px solid #baf3cd;
 }
 
-@media (max-width: 650px) {
-  .gardens-list {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+.garden-show-btn-light:hover {
+  background: #e5f7ee;
+  color: #16954e;
+}
+
+.garden-show-btn-link {
+  background: transparent;
+  color: #1fa766;
+  border: none;
+  box-shadow: none;
+  text-decoration: underline;
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.garden-show-btn-link:hover {
+  color: #16954e;
+  background: #e5f7ee;
+  text-decoration: underline;
+}
+
+.garden-show-empty-state {
+  text-align: center;
+  color: #555;
+  margin: 2.2rem 0;
+}
+.garden-show-empty-state p {
+  font-size: 1.14rem;
+}
+
+@media (max-width: 700px) {
+  #garden-show {
+    padding: 1.2rem 2vw;
   }
-  .garden-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: .7rem;
-    padding: 1.1rem;
+  .garden-show-image {
+    width: 95vw !important;
+    height: auto !important;
+    max-width: 390px;
+    max-height: 220px;
+  }
+  .garden-show-plants-table, .garden-show-plants-table th, .garden-show-plants-table td {
+    font-size: 0.96rem;
+  }
+  .garden-show-plants-table th, .garden-show-plants-table td {
+    padding: 0.65rem 0.3rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .garden-show-plants-table,
+  .garden-show-plants-table thead,
+  .garden-show-plants-table tbody,
+  .garden-show-plants-table th,
+  .garden-show-plants-table td,
+  .garden-show-plants-table tr {
+    display: block;
+    width: 100%;
+  }
+  .garden-show-plants-table thead {
+    display: none;
+  }
+  .garden-show-plants-table tr {
+    margin-bottom: 1.1rem;
+    box-shadow: 0 2px 6px #c4e5d288;
+    border-radius: 1.2rem;
+    background: #fff;
+    padding: .5rem 0;
+  }
+  .garden-show-plants-table td {
+    padding: 0.45rem 5vw;
+    border-bottom: none;
+    position: relative;
+  }
+  .garden-show-plants-table td:before {
+    content: attr(data-label) ": ";
+    font-weight: bold;
+    color: #1fa766;
+    display: block;
+    margin-bottom: 2px;
   }
 }

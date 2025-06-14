@@ -1,67 +1,78 @@
 <!-- app/views/gardens/show.html.erb -->
-<h1><%= @garden.name %></h1>
+<div id="garden-show">
 
-<p>
-  <strong>Owner:</strong>
-  <%= @garden.user.email %>
-</p>
+  <header class="garden-show-header">
+    <h1 class="garden-show-title"><%= @garden.name %></h1>
+    <div class="garden-show-owner">
+      <span class="owner-label">Owner:</span>
+      <span class="owner-email"><%= @garden.user.email %></span>
+    </div>
+  </header>
 
-<div class="garden-image">
-  <% if @garden.photo.attached? %>
-    <%= cl_image_tag @garden.photo.key, height: 300, width: 400, crop: :fill, alt: @garden.name %>
-  <% else %>
-    <%= image_tag "logo_garden_max.png", height: 300, width: 400, alt: "Garden Max Logo" %>
-  <% end %>
-</div>
+  <div class="garden-show-image-wrapper">
+    <% if @garden.photo.attached? %>
+      <%= cl_image_tag @garden.photo.key, height: 300, width: 400, crop: :fill, alt: @garden.name, class: "garden-show-image" %>
+    <% else %>
+      <%= image_tag "logo_garden_max.png", height: 300, width: 400, alt: "Garden Max Logo", class: "garden-show-image" %>
+    <% end %>
+  </div>
 
-<h2>Plants in this garden</h2>
+  <section class="garden-show-plants-section">
+    <h2 class="garden-show-subtitle">Plants in this garden</h2>
+    <% if @garden.plantations.any? %>
+      <table class="garden-show-plants-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Plant</th>
+            <th>Planted on</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @garden.plantations.includes(:plant).each do |plantation| %>
+            <tr>
+              <td>
+                <% if plantation.plant.photo.attached? %>
+                  <%= image_tag plantation.plant.photo, height: 60, width: 60, style: "object-fit: cover;", alt: plantation.plant.name, class: "garden-show-plant-thumbnail" %>
+                <% else %>
+                  <%= image_tag "logo_garden_max.png", height: 60, width: 60, style: "object-fit: contain;", alt: "Plant image placeholder", class: "garden-show-plant-thumbnail" %>
+                <% end %>
+              </td>
+              <td><%= plantation.plant.name %></td>
+              <td><%= plantation.date %></td>
+              <td><%= plantation.plant.description %></td>
+              <td>
+                <%= button_to 'Remove',
+                    garden_plantation_path(@garden, plantation),
+                    method: :delete,
+                    form: { data: { turbo_confirm: 'Are you sure?' } },
+                    class: 'garden-show-btn garden-show-btn-link' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="garden-show-empty-state">
+        <p>No plants in this garden yet.</p>
+        <p>
+          <%= link_to 'Add your first plant!', new_garden_plantation_path(@garden), class: 'garden-show-btn garden-show-btn-primary' %>
+        </p>
+      </div>
+    <% end %>
+  </section>
 
-<% if @garden.plantations.any? %>
-  <table class="plants-table">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Plant</th>
-        <th>Planted on</th>
-        <th>Description</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @garden.plantations.includes(:plant).each do |plantation| %>
-        <tr>
-          <td class="plant-thumbnail">
-            <% if plantation.plant.photo.attached? %>
-              <%= image_tag plantation.plant.photo, height: 60, width: 60, style: "object-fit: cover;", alt: plantation.plant.name %>
-            <% else %>
-              <%= image_tag "logo_garden_max.png", height: 60, width: 60, style: "object-fit: contain;", alt: "Plant image placeholder" %>
-            <% end %>
-          </td>
-          <td><%= plantation.plant.name %></td>
-          <td><%= plantation.date %></td>
-          <td><%= plantation.plant.description %></td>
-          <td>
-            <%= button_to 'Remove',
-                garden_plantation_path(@garden, plantation),
-                method: :delete,
-                form: { data: { turbo_confirm: 'Are you sure?' } },
-                class: 'btn-link' %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>No plants in this garden yet.</p>
-<% end %>
+  <nav class="garden-show-actions">
+    <%= link_to 'Add Plant', new_garden_plantation_path(@garden), class: 'garden-show-btn garden-show-btn-primary' %>
+    <%= link_to 'Edit Garden', edit_garden_path(@garden), class: 'garden-show-btn garden-show-btn-secondary' %>
+    <%= button_to 'Delete Garden',
+        garden_path(@garden),
+        method: :delete,
+        form: { data: { turbo_confirm: 'Are you sure you want to delete this garden? This action cannot be undone.' } },
+        class: 'garden-show-btn garden-show-btn-danger' %>
+    <%= link_to 'Back', gardens_path, class: 'garden-show-btn garden-show-btn-light' %>
+  </nav>
 
-<div class="garden-actions">
-  <%= link_to 'Add Plant', new_garden_plantation_path(@garden), class: 'button btn-primary' %>
-  <%= link_to 'Edit Garden', edit_garden_path(@garden), class: 'button btn-secondary' %>
-  <%= button_to 'Delete Garden',
-      garden_path(@garden),
-      method: :delete,
-      form: { data: { turbo_confirm: 'Are you sure you want to delete this garden? This action cannot be undone.' } },
-      class: 'button btn-danger' %>
-  <%= link_to 'Back', gardens_path, class: 'button btn-light' %>
 </div>
