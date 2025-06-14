@@ -1,3 +1,4 @@
+# app/controllers/gardens_controller.rb
 class GardensController < ApplicationController
   def new
     @garden = Garden.new
@@ -6,7 +7,6 @@ class GardensController < ApplicationController
   def create
     @garden = Garden.new(garden_params)
     @garden.user = current_user
-
     if @garden.save
       redirect_to gardens_path, notice: 'Garden was successfully created.'
     else
@@ -21,6 +21,10 @@ class GardensController < ApplicationController
   def show
     @garden = Garden.find(params[:id])
     @plantations = Plantation.where(garden: @garden)
+
+    # Ajout des variables nécessaires pour la modale
+    @plantation = Plantation.new
+    @plants = Plant.all # ou Plant.available selon vos besoins
   end
 
   def edit
@@ -29,7 +33,6 @@ class GardensController < ApplicationController
 
   def update
     @garden = Garden.find(params[:id])
-
     if @garden.update(garden_params)
       redirect_to @garden, notice: 'Garden was successfully updated.'
     else
@@ -44,9 +47,8 @@ class GardensController < ApplicationController
   end
 
   private
+
   def garden_params
     params.require(:garden).permit(:name, :photo)
   end
-
-
 end

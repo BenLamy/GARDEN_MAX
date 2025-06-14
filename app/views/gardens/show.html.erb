@@ -1,6 +1,7 @@
 <!-- app/views/gardens/show.html.erb -->
-<div id="garden-show">
 
+<!-- app/views/gardens/show.html.erb -->
+<div id="garden-show">
   <header class="garden-show-header">
     <h1 class="garden-show-title"><%= @garden.name %></h1>
     <div class="garden-show-owner">
@@ -58,14 +59,18 @@
       <div class="garden-show-empty-state">
         <p>No plants in this garden yet.</p>
         <p>
-          <%= link_to 'Add your first plant!', new_garden_plantation_path(@garden), class: 'garden-show-btn garden-show-btn-primary' %>
+          <button type="button" class='garden-show-btn garden-show-btn-primary' data-bs-toggle="modal" data-bs-target="#addPlantModal">
+            Add your first plant!
+          </button>
         </p>
       </div>
     <% end %>
   </section>
 
   <nav class="garden-show-actions">
-    <%= link_to 'Add Plant', new_garden_plantation_path(@garden), class: 'garden-show-btn garden-show-btn-primary' %>
+    <button type="button" class='garden-show-btn garden-show-btn-primary' data-bs-toggle="modal" data-bs-target="#addPlantModal">
+      Add Plant
+    </button>
     <%= link_to 'Edit Garden', edit_garden_path(@garden), class: 'garden-show-btn garden-show-btn-secondary' %>
     <%= button_to 'Delete Garden',
         garden_path(@garden),
@@ -74,5 +79,48 @@
         class: 'garden-show-btn garden-show-btn-danger' %>
     <%= link_to 'Back', gardens_path, class: 'garden-show-btn garden-show-btn-light' %>
   </nav>
+</div>
 
+<!-- Modale pour ajouter une plantation -->
+<div class="modal fade" id="addPlantModal" tabindex="-1" aria-labelledby="addPlantModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addPlantModalLabel">Add Plant to <%= @garden.name %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <%= form_with(model: [@garden, @plantation], local: true, html: { id: "plantation-form" }) do |form| %>
+        <div class="modal-body">
+          <% if @plantation&.errors&.any? %>
+            <div class="alert alert-danger" id="error_explanation">
+              <h6><%= pluralize(@plantation.errors.count, "error") %> prevented this plant from being added:</h6>
+              <ul class="mb-0">
+                <% @plantation.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="mb-3">
+            <%= form.label :plant_id, class: "form-label" %>
+            <%= form.collection_select :plant_id, @plants, :id, :name,
+                { prompt: "Select a plant" },
+                { class: "form-select" } %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :date, class: "form-label" %>
+            <%= form.date_field :date, class: "form-control", value: Date.current %>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <%= form.submit "Add to Garden", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
