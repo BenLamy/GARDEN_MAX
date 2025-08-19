@@ -1,13 +1,8 @@
+# Database seeding file for GARDEN_MAX application
+# Creates initial plant catalog with descriptions and images
+# 
 # This file should ensure the existence of records required to run the application in every environment (production,
 # development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-# This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
 # Create 10 plant entries with appropriate fields
@@ -64,7 +59,8 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
-# Create 10 plant entries with appropriate fields and images
+# Plant catalog data - 10 common garden plants with descriptions and image references
+# Each plant includes name, growing description, and corresponding image file
 plants = [
   {
     name: "Tomato - Roma",
@@ -118,21 +114,21 @@ plants = [
   }
 ]
 
-# Add plants to the database with their images
+# Process each plant entry and create database records with image attachments
 plants.each do |plant_attributes|
-  # Extract the image path
+  # Extract the image path from attributes (not stored in database)
   image_path = plant_attributes.delete(:image_path)
 
-  # Create the plant
+  # Create the plant record in the database
   plant = Plant.create!(plant_attributes)
 
-  # Attach the image if it exists
+  # Attach the corresponding image via Active Storage if file exists
   if image_path && File.exist?(image_path)
     plant.photo.attach(io: File.open(image_path), filename: File.basename(image_path))
-    puts "Attached image for #{plant.name}"
+    puts "✅ Created #{plant.name} with image attached"
   else
-    puts "Warning: Image not found for #{plant.name} at path: #{image_path}"
+    puts "⚠️  Warning: Image not found for #{plant.name} at path: #{image_path}"
   end
 end
 
-puts "Created #{plants.count} plants"
+puts "🌱 Seeding completed: Created #{plants.count} plants for the garden catalog"

@@ -1,6 +1,6 @@
-<!-- app/views/gardens/show.html.erb -->
+<!-- Garden Show View - Displays detailed view of a specific garden with all its plantations -->
+<!-- Features: Garden info, planted items table, modal for adding plants, action buttons -->
 
-<!-- app/views/gardens/show.html.erb -->
 <div id="garden-show">
   <header class="garden-show-header">
     <h1 class="garden-show-title"><%= @garden.name %></h1>
@@ -18,9 +18,11 @@
     <% end %>
   </div>
 
+  <!-- Plants section - shows all plants currently in the garden -->
   <section class="garden-show-plants-section">
     <h2 class="garden-show-subtitle">Plants in this garden</h2>
     <% if @garden.plantations.any? %>
+      <!-- Table displays plant details with remove functionality -->
       <table class="garden-show-plants-table">
         <thead>
           <tr>
@@ -32,9 +34,11 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Loop through plantations with eager loading to avoid N+1 queries -->
           <% @garden.plantations.includes(:plant).each do |plantation| %>
             <tr>
               <td>
+                <!-- Display plant photo if available, otherwise show default logo -->
                 <% if plantation.plant.photo.attached? %>
                   <%= image_tag plantation.plant.photo, height: 60, width: 60, style: "object-fit: cover;", alt: plantation.plant.name, class: "garden-show-plant-thumbnail" %>
                 <% else %>
@@ -56,6 +60,7 @@
         </tbody>
       </table>
     <% else %>
+      <!-- Empty state when no plants are planted yet -->
       <div class="garden-show-empty-state">
         <p>No plants in this garden yet.</p>
         <p>
@@ -67,11 +72,14 @@
     <% end %>
   </section>
 
+  <!-- Action buttons for garden management -->
   <nav class="garden-show-actions">
+    <!-- Triggers Bootstrap modal for adding plants -->
     <button type="button" class='garden-show-btn garden-show-btn-primary' data-bs-toggle="modal" data-bs-target="#addPlantModal">
       Add Plant
     </button>
     <%= link_to 'Edit Garden', edit_garden_path(@garden), class: 'garden-show-btn garden-show-btn-secondary' %>
+    <!-- Delete with confirmation dialog -->
     <%= button_to 'Delete Garden',
         garden_path(@garden),
         method: :delete,
@@ -81,7 +89,8 @@
   </nav>
 </div>
 
-<!-- Modale pour ajouter une plantation -->
+<!-- Bootstrap Modal for adding plants to the garden -->
+<!-- Uses form_with for Rails UJS and includes error handling -->
 <div class="modal fade" id="addPlantModal" tabindex="-1" aria-labelledby="addPlantModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -90,8 +99,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
+      <!-- Nested form for creating plantation within garden context -->
       <%= form_with(model: [@garden, @plantation], local: true, html: { id: "plantation-form" }) do |form| %>
         <div class="modal-body">
+          <!-- Display validation errors if form submission failed -->
           <% if @plantation&.errors&.any? %>
             <div class="alert alert-danger" id="error_explanation">
               <h6><%= pluralize(@plantation.errors.count, "error") %> prevented this plant from being added:</h6>
@@ -103,6 +114,7 @@
             </div>
           <% end %>
 
+          <!-- Plant selection dropdown populated from @plants -->
           <div class="mb-3">
             <%= form.label :plant_id, class: "form-label" %>
             <%= form.collection_select :plant_id, @plants, :id, :name,
@@ -110,6 +122,7 @@
                 { class: "form-select" } %>
           </div>
 
+          <!-- Date field defaulting to current date -->
           <div class="mb-3">
             <%= form.label :date, class: "form-label" %>
             <%= form.date_field :date, class: "form-control", value: Date.current %>
