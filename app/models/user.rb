@@ -18,4 +18,7 @@ class User < ApplicationRecord
   
   # Association: Users can access all plants they've planted through plantations
   has_many :plants, through: :plantations
+
+  # Theme preference validation
+  validates :theme, inclusion: { in: %w[light dark], message: "must be either 'light' or 'dark'" }
 end

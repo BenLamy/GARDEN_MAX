@@ -1,10 +1,16 @@
 
-<h1>Create a New Garden</h1>
+<div class="garden-form-container">
+  <h1>Create a New Garden</h1>
 
-<%= simple_form_for @garden do |f| %>
-  <%= f.input :name, label: "Garden Name", required: true %>
-  <%= f.input :photo, as: :file, label: "Garden Photo", hint: "Upload an image of your garden (optional)" %>
-  <%= f.button :submit, "Create Garden", class: "btn-primary" %>
-<% end %>
+  <div class="garden-form-wrapper">
+    <%= simple_form_for @garden do |f| %>
+      <%= f.input :name, label: "Garden Name", required: true %>
+      <%= f.input :photo, as: :file, label: "Garden Photo", hint: "Upload an image of your garden (optional)" %>
+      <%= f.button :submit, "Create Garden", class: "btn-primary" %>
+    <% end %>
+  </div>
 
-<p><%= link_to 'Back to Gardens', gardens_path %></p>
+  <div class="garden-form-actions">
+    <%= link_to 'Back to Gardens', gardens_path %>
+  </div>
+</div>

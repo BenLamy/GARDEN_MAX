@@ -1,0 +1,154 @@
+.garden-form-container {
+  background: var(--card-bg);
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 28px var(--shadow-card);
+  padding: 2.5rem 2vw 2rem 2vw;
+  max-width: 600px;
+  margin: 2.5rem auto 1.8rem auto;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.garden-form-container h1 {
+  color: var(--text-accent);
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.garden-form-wrapper {
+  margin-bottom: 2rem;
+}
+
+.current-photo {
+  background: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--text-link);
+}
+
+.current-photo p {
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.current-photo img {
+  border-radius: 1rem;
+  border: 2px solid var(--border-accent);
+  background: var(--bg-secondary);
+  box-shadow: 0 2px 18px var(--shadow-medium);
+  display: block;
+  margin: 0 auto;
+}
+
+.garden-form-container .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.garden-form-container .form-control {
+  border-radius: 0.75rem;
+  border: 2px solid var(--border-accent);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.garden-form-container .form-control:focus {
+  border-color: var(--text-link);
+  box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.25);
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+}
+
+.garden-form-container label {
+  color: var(--text-link);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.garden-form-container .form-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.garden-form-container .btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 1.7rem;
+  border: none;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, box-shadow 0.16s;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.garden-form-container .btn-primary {
+  background: linear-gradient(90deg, var(--text-link) 50%, var(--text-accent) 100%);
+  color: #fff !important;
+}
+
+.garden-form-container .btn-primary:hover {
+  background: linear-gradient(90deg, var(--text-accent) 70%, var(--text-link) 100%);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+.garden-form-actions {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.garden-form-actions a {
+  color: var(--text-link);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.15s;
+}
+
+.garden-form-actions a:hover {
+  color: var(--text-accent);
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .garden-form-container {
+    padding: 1.5rem 4vw;
+    margin: 1.5rem auto;
+  }
+
+  .garden-form-container h1 {
+    font-size: 2rem;
+  }
+
+  .current-photo {
+    padding: 1rem;
+  }
+
+  .current-photo img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 500px) {
+  .garden-form-container {
+    padding: 1rem 4vw;
+  }
+
+  .garden-form-container .btn {
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+  }
+}

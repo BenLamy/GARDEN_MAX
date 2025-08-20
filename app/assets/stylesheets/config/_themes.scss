@@ -1,0 +1,214 @@
+// Light theme (default)
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f6fff9;
+  --bg-accent: #e5f7ee;
+  --bg-page: #f7faf8;
+  --text-primary: #333333;
+  --text-secondary: #0e4a24;
+  --text-accent: #16954e;
+  --text-link: #1fa766;
+  --text-muted: #555555;
+  --border-color: #eaf3ec;
+  --border-accent: #baf3cd;
+  --shadow-light: rgba(14, 74, 36, 0.1);
+  --shadow-medium: rgba(196, 229, 210, 0.8);
+  --shadow-card: rgba(14, 74, 36, 0.1);
+  --shadow-hover: rgba(31, 167, 102, 0.13);
+  --navbar-bg: #ffffff;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --button-secondary-bg: #e5f7ee;
+  --button-danger-bg: #ffd1d1;
+  --button-danger-text: #d0202b;
+}
+
+// Dark theme
+[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --bg-accent: #3a3a3a;
+  --bg-page: #151515;
+  --text-primary: #e0e0e0;
+  --text-secondary: #c0c0c0;
+  --text-accent: #4ade80;
+  --text-link: #22c55e;
+  --text-muted: #a0a0a0;
+  --border-color: #404040;
+  --border-accent: #4ade80;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.5);
+  --shadow-card: rgba(0, 0, 0, 0.4);
+  --shadow-hover: rgba(34, 197, 94, 0.2);
+  --navbar-bg: #1f1f1f;
+  --card-bg: #2d2d2d;
+  --input-bg: #2d2d2d;
+  --button-secondary-bg: #3a3a3a;
+  --button-danger-bg: #4a2929;
+  --button-danger-text: #ff6b6b;
+}
+
+// Apply theme variables to common elements
+body {
+  background-color: var(--bg-page) !important;
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Navbar styling
+.navbar, .navbar-lewagon {
+  background-color: var(--navbar-bg) !important;
+  border-bottom: 1px solid var(--border-color);
+}
+
+// Cards and containers
+.card, .garden-card, .settings-container, #garden-show, #signin-page {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color);
+  box-shadow: 0 4px 28px var(--shadow-card) !important;
+}
+
+.garden-card:hover {
+  box-shadow: 0 4px 24px var(--shadow-hover) !important;
+}
+
+// Typography
+h1, .garden-show-title, .settings-container h1, .signin-title {
+  color: var(--text-accent) !important;
+}
+
+h2, .garden-info h2, .garden-show-subtitle, .settings-section h3 {
+  color: var(--text-link) !important;
+}
+
+h2 a, .garden-info h2 a {
+  color: var(--text-link) !important;
+}
+
+h2 a:hover, .garden-info h2 a:hover {
+  color: var(--text-accent) !important;
+}
+
+p, .garden-info p, .empty-state, .signin-subtitle, .signin-checkbox-label {
+  color: var(--text-muted) !important;
+}
+
+// Forms
+.form-control, .signin-input {
+  background-color: var(--input-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-accent) !important;
+}
+
+.form-control:focus, .signin-input:focus {
+  background-color: var(--input-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--text-link) !important;
+  box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.25) !important;
+}
+
+.signin-label {
+  color: var(--text-link) !important;
+}
+
+// Special containers
+.current-email, .theme-toggle-container, .empty-state-info {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--text-link) !important;
+}
+
+// Tables
+.garden-show-plants-table {
+  background-color: var(--card-bg) !important;
+}
+
+.garden-show-plants-table td {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.garden-show-plants-table th {
+  color: #fff !important;
+}
+
+// Dropdowns
+.dropdown-menu {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dropdown-item {
+  color: var(--text-primary) !important;
+}
+
+.dropdown-item:hover {
+  background-color: var(--bg-accent) !important;
+  color: var(--text-primary) !important;
+}
+
+// Buttons
+.btn-secondary, .garden-show-btn-secondary {
+  background-color: var(--button-secondary-bg) !important;
+  color: var(--text-accent) !important;
+}
+
+.btn-secondary:hover, .garden-show-btn-secondary:hover {
+  background-color: var(--border-accent) !important;
+  color: var(--text-secondary) !important;
+}
+
+.btn-danger, .garden-show-btn-danger {
+  background-color: var(--button-danger-bg) !important;
+  color: var(--button-danger-text) !important;
+}
+
+.btn-danger:hover, .garden-show-btn-danger:hover {
+  background-color: var(--button-danger-text) !important;
+  color: var(--bg-primary) !important;
+}
+
+// Links and borders
+.signin-links {
+  border-color: var(--border-color) !important;
+}
+
+.signin-links a {
+  color: var(--text-link) !important;
+}
+
+.signin-links a:hover {
+  color: var(--text-accent) !important;
+}
+
+// Bootstrap alerts
+.alert-info {
+  background-color: var(--bg-accent) !important;
+  border-color: var(--text-link) !important;
+  color: var(--text-primary) !important;
+}
+
+.alert-warning {
+  background-color: var(--button-danger-bg) !important;
+  border-color: var(--button-danger-text) !important;
+  color: var(--button-danger-text) !important;
+}
+
+.alert-success {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--text-link) !important;
+  color: var(--text-secondary) !important;
+}
+
+.btn-close {
+  filter: var(--text-primary) !important;
+}
+
+// Additional image containers and thumbnails
+.garden-thumbnail img, .garden-show-image, .garden-show-plant-thumbnail {
+  border-color: var(--border-accent) !important;
+  background-color: var(--bg-secondary) !important;
+  box-shadow: 0 2px 18px var(--shadow-medium) !important;
+}

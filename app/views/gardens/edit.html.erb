@@ -1,20 +1,26 @@
-<h1>Edit Garden</h1>
+<div class="garden-form-container">
+  <h1>Edit Garden</h1>
 
-<%= simple_form_for @garden do |f| %>
-  <%= f.input :name, label: "Garden Name", required: true %>
+  <div class="garden-form-wrapper">
+    <%= simple_form_for @garden do |f| %>
+      <%= f.input :name, label: "Garden Name", required: true %>
 
-  <div class="current-photo">
-    <% if @garden.photo.attached? %>
-      <p>Current photo:</p>
-      <%= image_tag @garden.photo, height: 150, width: 150, style: "object-fit: cover;" %>
-    <% else %>
-      <p>No current photo</p>
+      <div class="current-photo">
+        <% if @garden.photo.attached? %>
+          <p>Current photo:</p>
+          <%= image_tag @garden.photo, height: 150, width: 150, style: "object-fit: cover;" %>
+        <% else %>
+          <p>No current photo</p>
+        <% end %>
+      </div>
+
+      <%= f.input :photo, as: :file, label: "Garden Photo", hint: "Upload a new image to replace the current one (optional)" %>
+
+      <%= f.button :submit, "Update Garden", class: "btn-primary" %>
     <% end %>
   </div>
 
-  <%= f.input :photo, as: :file, label: "Garden Photo", hint: "Upload a new image to replace the current one (optional)" %>
-
-  <%= f.button :submit, "Update Garden", class: "btn-primary" %>
-<% end %>
-
-<p><%= link_to 'Back to Gardens', gardens_path %></p>
+  <div class="garden-form-actions">
+    <%= link_to 'Back to Gardens', gardens_path %>
+  </div>
+</div>

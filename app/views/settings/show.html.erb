@@ -1,0 +1,91 @@
+<h1>Settings</h1>
+
+<div class="settings-container">
+  
+  <!-- Profile Picture Section -->
+  <div class="settings-section">
+    <h3>Profile Picture</h3>
+    
+    <div class="current-profile-picture mb-3">
+      <% if current_user.photo.attached? %>
+        <%= image_tag current_user.photo, class: "profile-picture-large", alt: "Current profile picture" %>
+      <% else %>
+        <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "profile-picture-large", alt: "Default profile picture" %>
+      <% end %>
+    </div>
+
+    <%= simple_form_for current_user, url: update_profile_settings_path, method: :patch, local: true do |f| %>
+      <%= f.input :photo, as: :file, label: "Upload New Profile Picture", hint: "Choose an image file (JPG, PNG, GIF)" %>
+      <%= f.button :submit, "Update Picture", class: "btn-primary btn-sm me-2" %>
+    <% end %>
+
+    <% if current_user.photo.attached? %>
+      <%= button_to "Remove Picture", remove_photo_settings_path, method: :delete, 
+                    data: { turbo_confirm: "Are you sure you want to remove your profile picture?" }, 
+                    class: "btn btn-sm btn-danger mt-2" %>
+    <% end %>
+  </div>
+
+  <!-- Password Change Section -->
+  <div class="settings-section">
+    <h3>Change Password</h3>
+    
+    <%= simple_form_for current_user, url: update_password_settings_path, method: :patch, local: true do |f| %>
+      <%= f.input :current_password, required: true, label: "Current Password", 
+                  input_html: { autocomplete: "current-password" } %>
+      <%= f.input :password, required: true, label: "New Password", 
+                  hint: "Minimum 6 characters", 
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.input :password_confirmation, required: true, label: "Confirm New Password", 
+                  input_html: { autocomplete: "new-password" } %>
+      <%= f.button :submit, "Update Password", class: "btn-primary" %>
+    <% end %>
+  </div>
+
+  <!-- Email Change Section -->
+  <div class="settings-section">
+    <h3>Change Email Address</h3>
+    
+    <div class="current-email mb-3">
+      <p><strong>Current Email:</strong> <%= current_user.email %></p>
+    </div>
+
+    <%= simple_form_for current_user, url: update_email_settings_path, method: :patch, local: true do |f| %>
+      <%= f.input :email, required: true, label: "New Email Address", 
+                  input_html: { autocomplete: "email" } %>
+      <%= f.input :current_password, required: true, label: "Current Password", 
+                  hint: "Enter your current password to confirm this change", 
+                  input_html: { autocomplete: "current-password" } %>
+      <%= f.button :submit, "Update Email", class: "btn-primary" %>
+    <% end %>
+  </div>
+
+  <!-- Appearance Section -->
+  <div class="settings-section">
+    <h3>Appearance</h3>
+    
+    <div class="theme-toggle-container">
+      <div class="theme-option">
+        <div class="theme-info">
+          <h4>Dark Mode</h4>
+          <p>Switch between light and dark themes</p>
+        </div>
+        <div class="theme-switch">
+          <div class="toggle-switch">
+            <input type="checkbox" 
+                   id="theme-toggle" 
+                   <%= 'checked' if current_user.theme == 'dark' %>
+                   data-theme-target="toggle"
+                   data-action="change->theme#toggle">
+            <label for="theme-toggle" class="toggle-slider"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="action-buttons">
+  <%= link_to 'Back to Gardens', gardens_path, class: 'btn btn-secondary' %>
+</div>
