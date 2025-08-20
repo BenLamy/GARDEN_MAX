@@ -34,4 +34,13 @@ Rails.application.routes.draw do
   # Plant management routes (admin/seeding purposes)
   # Creates standard CRUD routes for plant catalog management
   resources :plants
+
+  # Settings routes for user profile management
+  # Allows users to manage profile pictures, passwords, and email addresses
+  get 'settings', to: 'settings#show'
+  patch 'settings/profile', to: 'settings#update_profile', as: 'update_profile_settings'
+  delete 'settings/photo', to: 'settings#remove_photo', as: 'remove_photo_settings'
+  patch 'settings/password', to: 'settings#update_password', as: 'update_password_settings'
+  patch 'settings/email', to: 'settings#update_email', as: 'update_email_settings'
+  patch 'settings/theme', to: 'settings#update_theme', as: 'update_theme_settings'
 end

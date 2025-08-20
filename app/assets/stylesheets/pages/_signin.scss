@@ -1,0 +1,142 @@
+#signin-page {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 28px #0e4a241a;
+  padding: 2.5rem 2vw 2rem 2vw;
+  max-width: 500px;
+  margin: 2.5rem auto 1.8rem auto;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+
+.signin-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.signin-title {
+  color: #16954e;
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 0.5rem;
+}
+
+.signin-subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 0;
+}
+
+.signin-form-wrapper {
+  margin-top: 1.5rem;
+}
+
+.signin-form-inputs {
+  margin-bottom: 1.5rem;
+}
+
+.signin-input-group {
+  margin-bottom: 1.2rem;
+}
+
+.signin-label {
+  color: #1fa766;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.signin-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e5f7ee;
+  border-radius: 0.8rem;
+  font-size: 1rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  background: #fff;
+}
+
+.signin-input:focus {
+  border-color: #1fa766;
+  box-shadow: 0 0 0 3px #1fa76620;
+  outline: none;
+}
+
+.signin-checkbox-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.signin-checkbox-label {
+  color: #555;
+  font-size: 0.95rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0;
+}
+
+.signin-form-actions {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.signin-btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 1.7rem;
+  border: none;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, box-shadow 0.16s;
+  cursor: pointer;
+  width: 100%;
+}
+
+.signin-btn-primary {
+  background: linear-gradient(90deg, #1fa766 50%, #16954e 100%);
+  color: #fff !important;
+}
+
+.signin-btn-primary:hover {
+  background: linear-gradient(90deg, #16954e 70%, #1fa766 100%);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px #1fa76640;
+}
+
+.signin-links {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e5f7ee;
+}
+
+.signin-links a {
+  color: #1fa766;
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-block;
+  margin: 0.25rem 0.5rem;
+  transition: color 0.15s;
+}
+
+.signin-links a:hover {
+  color: #16954e;
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  #signin-page {
+    margin: 1rem auto;
+    padding: 2rem 1.5rem;
+    border-radius: 1rem;
+  }
+  
+  .signin-title {
+    font-size: 2rem;
+  }
+  
+  .signin-subtitle {
+    font-size: 1rem;
+  }
+}

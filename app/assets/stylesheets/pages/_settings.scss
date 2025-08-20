@@ -1,0 +1,255 @@
+.settings-container {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 28px #0e4a241a;
+  padding: 2.5rem 2vw 2rem 2vw;
+  max-width: 970px;
+  margin: 2.5rem auto 1.8rem auto;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+
+  h1 {
+    color: #16954e;
+    font-size: 2.3rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+}
+
+.settings-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eaf3ec;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    color: #1fa766;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.5px;
+  }
+}
+
+.profile-picture-large {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #e5f7ee;
+  box-shadow: 0 2px 16px #c4e5d2cc;
+  background: #f6fff9;
+}
+
+.current-profile-picture {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.current-email {
+  background: #f6fff9;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #1fa766;
+
+  p {
+    margin: 0;
+    color: #0e4a24;
+    font-size: 1.05rem;
+  }
+
+  strong {
+    color: #16954e;
+  }
+}
+
+.settings-container .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.settings-container .form-control {
+  border-radius: 0.75rem;
+  border: 2px solid #e5f7ee;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: border-color 0.15s ease-in-out;
+
+  &:focus {
+    border-color: #1fa766;
+    box-shadow: 0 0 0 0.2rem rgba(31, 167, 102, 0.25);
+  }
+}
+
+.settings-container .btn {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 1.7rem;
+  border: none;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, box-shadow 0.16s;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.settings-container .btn-primary {
+  background: linear-gradient(90deg, #1fa766 50%, #16954e 100%);
+  color: #fff !important;
+
+  &:hover {
+    background: linear-gradient(90deg, #16954e 70%, #1fa766 100%);
+    color: #fff;
+  }
+}
+
+.settings-container .btn-sm {
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+}
+
+.settings-container .btn-danger {
+  background: #ffd1d1;
+  color: #d0202b;
+
+  &:hover {
+    background: #ffadad;
+    color: #fff;
+  }
+}
+
+.settings-container .btn-secondary {
+  background: #e5f7ee;
+  color: #16954e;
+
+  &:hover {
+    background: #baf3cd;
+    color: #0e4a24;
+  }
+}
+
+.action-buttons {
+  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.theme-toggle-container {
+  background: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  border-left: 4px solid var(--text-link);
+}
+
+.theme-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.theme-info h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.theme-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 32px;
+}
+
+.toggle-switch input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--button-secondary-bg);
+  border: 2px solid var(--border-accent);
+  transition: 0.3s;
+  border-radius: 32px;
+}
+
+.toggle-slider:before {
+  position: absolute;
+  content: "";
+  height: 24px;
+  width: 24px;
+  left: 2px;
+  bottom: 2px;
+  background-color: var(--text-link);
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+  background-color: var(--text-accent);
+  border-color: var(--text-link);
+}
+
+input:checked + .toggle-slider:before {
+  transform: translateX(28px);
+  background-color: var(--bg-primary);
+}
+
+@media (max-width: 700px) {
+  .settings-container {
+    padding: 1.5rem 4vw;
+    margin: 1.5rem auto;
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .profile-picture-large {
+    width: 100px;
+    height: 100px;
+  }
+
+  .settings-section h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .settings-container {
+    padding: 1rem 4vw;
+
+    .btn {
+      width: 100%;
+      margin-bottom: 0.75rem;
+      text-align: center;
+    }
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
